@@ -62,8 +62,7 @@ int main(int argc, char **argv){
   unsigned int thereIsNextKey = 1;
   struct timeval start, end, deltatime;
   unsigned char result[65], charKey[65], possibleKey[65], key[17];
-
-  //mudar size para não receber atribuição
+  MPI Request request;
   
   strcpy(plainText, argv[1]);
   strcpy(cipherText, argv[2]);
@@ -99,7 +98,11 @@ int main(int argc, char **argv){
       break;
     }
     
-  myKey++;
+     if(finish){
+      break;
+     }
+   
+     myKey++;
   }
 
   MPI_Finalize();
